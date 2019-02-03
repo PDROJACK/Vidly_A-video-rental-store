@@ -2,6 +2,13 @@ const express = require('express');
 const app = express();
 const genres = require('./routes/genres');
 const homepage = require('./routes/homepage');
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/vidley',{
+    useNewUrlParser: true
+})
+    .then(()=>console.log('Connected...'))
+    .catch(err=>console.error("Connection failed..."));
 
 
 app.set('view engine','pug');
