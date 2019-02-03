@@ -3,6 +3,7 @@ const app = express();
 const genres = require('./routes/genres');
 const homepage = require('./routes/homepage');
 const mongoose = require('mongoose');
+const customers = require('./routes/customers');
 
 mongoose.connect('mongodb://localhost/vidley',{
     useNewUrlParser: true
@@ -16,6 +17,7 @@ app.set('views','./views');
 
 app.use(express.json());
 app.use('/api/genres/',genres);
+app.use('/api/customers',customers);
 app.use('/',homepage);
 
 
