@@ -12,14 +12,15 @@ const genreSchema = new mongoose.Schema({
 
 function validateCourse(genre){
     const schema = {
-        name: Joi.string().min(3).required()
+        name: Joi.string().min(5).required()
     };
 
     return Joi.validate(genre, schema);
 }   
 
-const Genre = mongoose.model('Genre', genreSchema);
+const Genre = mongoose.model('Genres', genreSchema);
 
+exports.genreSchema = genreSchema;
 exports.Genre = Genre;
 exports.validate = validateCourse;
 

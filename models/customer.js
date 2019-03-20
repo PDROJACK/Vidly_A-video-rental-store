@@ -1,10 +1,11 @@
+
 const Joi = require('joi');
 const mongoose = require('mongoose');
 
 const customerSchema = new mongoose.Schema({
     name: {type:String,minlength: 3,required: true},
-    isGold: {type:Boolean,length: 10,required: true},
-    phone: {type: String,required: true}
+    isGold: {type:Boolean,required: true},
+    phone: {type: String,length: 10,required: true}
 });
 
 const Customer = mongoose.model('Customer',customerSchema);
@@ -18,6 +19,6 @@ function validateCustomer(customer){
     return Joi.validate(customer,schema);
 }
 
-
+exports.customerSchama = customerSchema;
 exports.Customer = Customer;
 exports.validate = validateCustomer;

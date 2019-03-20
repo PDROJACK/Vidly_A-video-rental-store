@@ -51,9 +51,7 @@ router.delete('/:id',async (req,res) => {
     if(!genre){ 
         return res.status(404).send('The genre with given id is not found');
     }
-    res.send(genres);
+    res.send(genre);
 });
-
-
 
 module.exports = router;
