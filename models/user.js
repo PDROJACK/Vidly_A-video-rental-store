@@ -1,9 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Joi = require('joi');
+const jwt = require('jsonwebtoken');
+const config = require('config');
  
-
-const User = mongoose.model('User', new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     name: {
         type: String,
         minlength: 3,
@@ -23,8 +24,13 @@ const User = mongoose.model('User', new mongoose.Schema({
         maxlength: 1024,
         required: true
     }
-}));
+});
 
+userSchema.methods.generateAuthToken = function(){
+    return jwt.sign({ _id: this._id }, config.get("jwtPrivateKey"));
+};
+
+const User = mongoose.model('User', userSchema);
 function validateUser(user){
     const schema = {
         name: Joi.string().min(3).max(55).required(),
